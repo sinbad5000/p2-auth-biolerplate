@@ -20,5 +20,7 @@ app.get("/", (req, res) => {
     res.render("index")
 })
 
+app.use("/auth", require("./controllers/auth"))
+
 
 app.listen(process.env.PORT || 3000)
