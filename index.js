@@ -7,6 +7,7 @@ const flash = require("flash")
 const passport = require("./config/ppConfig")
 const db = require("./models")
 const SequelizeStore = require("connect-session-sequelize")(session.Store)
+const isLoggedIn = require("./middleware/isLoggedIn")
 
 
 
@@ -45,6 +46,10 @@ app.use(function(req, res, next) {
 
 app.get("/", (req, res) => {
     res.render("index")
+})
+
+app.get("/profile", isLoggedIn, function(req, res) {
+    res.render("profile")
 })
 
 app.use("/auth", require("./controllers/auth"))
