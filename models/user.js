@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
                     createdUser.password = hash 
                 }
             }
+            // lol
         }
     })
     user.associate = function(models) {

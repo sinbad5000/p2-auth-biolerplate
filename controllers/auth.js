@@ -3,8 +3,9 @@ const router = express.Router()
 const db = require("../models")
 
 // import middleware
-const flash = require("flash")
-const passport;
+const flash = require("flash");
+const { response } = require("express");
+const passport = require("../config/ppConfig");
 
 router.get("/register", function(req, res) {
     res.render("auth/register")
@@ -42,11 +43,20 @@ router.post("/login", function(req, res) {
     passport.authenticate("local", function(error, user, info) {
         if (!user) {
             req.flash("error", "invalid username or password")
-
+            req.session.save(function() {
+                return res.redirect("auth/login")
+            })
         }
         if (error) {
-            return 
+            return next(error)
         }
+        req.login(function(user, error) {
+            if (error) next(error)
+            req.flash("success", "you logged in")
+            req.session.save(function() {
+                return res.redirect("/")
+            })
+        })
     })
 })
 router.post("/login", passport.authenticate("local", {
