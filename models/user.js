@@ -24,9 +24,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         password: {
             type: DataTypes.STRING,
-            validate: {
-                args: [8, 99],
-                msg: "password is wrong length"
+            validate: { 
+                len: {
+                    args: [8, 99],
+                    msg: "password is wrong length"
+                }
+                
             }
         }
     }, {

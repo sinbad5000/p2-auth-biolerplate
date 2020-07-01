@@ -4,7 +4,6 @@ const db = require("../models")
 
 // import middleware
 const flash = require("flash");
-const { response } = require("express");
 const passport = require("../config/ppConfig");
 
 router.get("/register", function(req, res) {
@@ -21,7 +20,10 @@ router.post("/register", function(req, res) {
     }).then(function([user, created]) {
         if (created) {
             console.log("user made")
-            res.redirect("/")
+            passport.authenticate("local", {
+                successRedirect: "/profile",
+                successFlash: "thanks for signing up"
+            })(req, res)
         } else {
             console.log("email exists")
             req.flash("error", "email already exists, try again")
@@ -39,25 +41,25 @@ router.post("/register", function(req, res) {
 router.get("/login", function(req, res) {
     res.render("auth/login")
 })
-router.post("/login", function(req, res) {
+router.post("/login", function(req, res, next) {
     passport.authenticate("local", function(error, user, info) {
         if (!user) {
             req.flash("error", "invalid username or password")
             req.session.save(function() {
-                return res.redirect("auth/login")
+                return res.redirect("/auth/login")
             })
         }
         if (error) {
             return next(error)
         }
-        req.login(function(user, error) {
+        req.login(user, function(error) {
             if (error) next(error)
             req.flash("success", "you logged in")
             req.session.save(function() {
                 return res.redirect("/")
             })
         })
-    })
+    })(req, res, next)
 })
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/", 
@@ -66,7 +68,10 @@ router.post("/login", passport.authenticate("local", {
     failureFlash: "invalid username or password"
 }))
 
-
+router.get("/logout", function(req, res) {
+    req.logout()
+    res.redirect("/")
+})
 
 
 module.exports = router

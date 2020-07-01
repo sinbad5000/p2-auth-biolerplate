@@ -17,7 +17,7 @@ passport.use(new LocalStrategy({
     usernameField: "email", 
     passwordField: "password"
 }, function(email, password, cb) {
-    db.user.finOne({ where: { email }}).then(function(user) {
+    db.user.findOne({ where: { email }}).then(function(user) {
         if (!user || !user.validPassword(password)) {
             cb(null, false)
         } else {

@@ -21,7 +21,7 @@ app.use(helmet())
 
 const sessionStore = new SequelizeStore({
     db: db.sequelize,
-    expiration: 1000 *60 *30
+    expiration: 1000 * 60 * 30
 })
 
 app.use(session({
@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
 })
 
 
-app.get("/", (req, res) => {
+app.get("/", function(req, res) {
     res.render("index")
 })
 
