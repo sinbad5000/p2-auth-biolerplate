@@ -1,0 +1,45 @@
+#nav {
+    display: flex;
+    justify-content: space-between;
+    font-size: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+a {
+    color: black;
+}
+
+p {
+    font-family: 'Vesper Libre', serif;
+    font-size: 30px;
+    color: black;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    color:black;
+    font-family: 'Vesper Libre', serif;
+    font-size: 70px;
+    
+}
+
+#index {
+    background-image: url(/img/laputa.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#profile {
+    background-image: url(/img/porco.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.auth {
+    background-image: url(/img/fireflies.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

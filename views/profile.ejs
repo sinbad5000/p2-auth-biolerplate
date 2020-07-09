@@ -1,1 +1,18 @@
-<h2>Hi <%= currentUser.name %>, welcome to the app!</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vesper+Libre&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body id="profile">
+    <h1>Hi <%= currentUser.name %>, welcome to the app!</h1>
+    <nav>
+        <a href="/films">Films</a>
+        <a href="/people">People</a>
+        <a href="/favorites">Favorites</a>
+    </nav>
+</body>
+</html>

@@ -1,17 +1,21 @@
 require("dotenv").config()
 const Express = require("express")
+const axios = require('axios'); 
 const ejsLayouts = require("express-ejs-layouts")
 const helmet = require("helmet")
 const session = require("express-session")
-const flash = require("flash")
+const flash = require("connect-flash")
 const passport = require("./config/ppConfig")
 const db = require("./models")
 const SequelizeStore = require("connect-session-sequelize")(session.Store)
 const isLoggedIn = require("./middleware/isLoggedIn")
-
-
-
+const rowdy = require('rowdy-logger')
+const moment = require('moment')
 const app = Express()
+
+rowdy.begin(app)
+
+
 app.use(Express.urlencoded({ extended: false}))
 app.use(Express.static(__dirname + "/public"))
 app.set("view engine", "ejs")
@@ -38,7 +42,7 @@ app.use(passport.session())
 app.use(flash())
 
 app.use(function(req, res, next) {
-    res.locals.alert = req.flash()
+    res.locals.alerts = req.flash()
     res.locals.currentUser = req.user
     next() 
 })
@@ -52,7 +56,37 @@ app.get("/profile", isLoggedIn, function(req, res) {
     res.render("profile")
 })
 
+
+// GET / - main index of site
+app.get('/films', function(req, res) {
+    var filmsUrl = 'https://ghibliapi.herokuapp.com/films';
+    // Use request to call the API
+    axios.get(filmsUrl).then( function(apiResponse) {
+      var films = apiResponse.data.results;
+      res.render('index', { films: films.slice(0, 25) });
+    })
+  });
+
+// GET / - main index of site
+app.get('/people', function(req, res) {
+    var peopleUrl = 'https://ghibliapi.herokuapp.com/people';
+    // Use request to call the API
+    axios.get(peopleUrl).then( function(apiResponse) {
+      var people = apiResponse.data.results;
+      res.render('index', { people: people.slice(0, 151) });
+    })
+  });
+
+
+
+
+
+
+
+
+
 app.use("/auth", require("./controllers/auth"))
-
-
-app.listen(process.env.PORT || 3000)
+app.use('/films', require('./controllers/films'));
+app.use('/people', require('./controllers/people'));
+var server = app.listen(process.env.PORT || 3000)
+module.exports = server;

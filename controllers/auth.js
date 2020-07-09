@@ -44,10 +44,8 @@ router.get("/login", function(req, res) {
 router.post("/login", function(req, res, next) {
     passport.authenticate("local", function(error, user, info) {
         if (!user) {
-            req.flash("error", "invalid username or password")
-            req.session.save(function() {
-                return res.redirect("/auth/login")
-            })
+            req.flash("error", "invalid username or password") 
+            return res.redirect("/auth/login")
         }
         if (error) {
             return next(error)
@@ -56,7 +54,7 @@ router.post("/login", function(req, res, next) {
             if (error) next(error)
             req.flash("success", "you logged in")
             req.session.save(function() {
-                return res.redirect("/")
+                return res.redirect("/profile")
             })
         })
     })(req, res, next)
