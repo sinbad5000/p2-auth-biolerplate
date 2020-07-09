@@ -1,7 +1,7 @@
 <div class="container">
     <h2>My Favorite People</h2>
     <ul>
-        <% person.forEach(function(people) { %>
+        <% people.forEach(function(people) { %>
             <li><a href="/people/<%= people.id %>"><%= people.name %></a></li>
         <% }) %>
     </ul>

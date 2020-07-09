@@ -1,7 +1,7 @@
 <div class="container">
     <h2>My Favorite Films</h2>
     <ul>
-        <% film.forEach(function(films) { %>
+        <% films.forEach(function(film) { %>
             <li><a href="/films/<%= film.id %>"><%= film.title %></a></li>
         <% }) %>
     </ul>

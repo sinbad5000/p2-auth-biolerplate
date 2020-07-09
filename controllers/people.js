@@ -4,7 +4,7 @@ var db = require('../models');
 const axios = require('axios');
 
 // GET /pokemon - return a page with favorited Pokemon
-router.get('/people/', function(req, res) {
+router.get('/', function(req, res) {
   // TODO: Get all records from the DB and render to view
   db.people.findAll().then(function(poke) {
     res.render("people/index", {poke:poke})
@@ -12,7 +12,7 @@ router.get('/people/', function(req, res) {
 });
 
 // POST /pokemon - receive the name of a pokemon and add it to the database
-router.post('/people/', function(req, res) {
+router.post('/', function(req, res) {
   // TODO: Get form data and add a new record to DB
   db.people.findOrCreate({
     where: {
@@ -24,16 +24,16 @@ router.post('/people/', function(req, res) {
 });
 
 
-router.get('/people/:id', function(req, res) {
-  db.people.findOne({
-    where: {
-      id: req.params.id
-    }
-  }).then(function(people) {
-    axios.get('https://ghibliapi.herokuapp.com/'+people.name.toLowerCase())
+router.get('/:id', function(req, res) {
+//  db.people.findOne({
+//    where: {
+//      id: req.params.id
+//    }
+ // }).then(function(people) {
+    axios.get('https://ghibliapi.herokuapp.com/people/'+req.params.id)
     .then(function(response) {
       res.render('people/show', {response})
-    })
+ //   })
   })
 })
 

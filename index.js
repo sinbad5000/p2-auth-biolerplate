@@ -62,8 +62,8 @@ app.get('/films', function(req, res) {
     var filmsUrl = 'https://ghibliapi.herokuapp.com/films';
     // Use request to call the API
     axios.get(filmsUrl).then( function(apiResponse) {
-      var films = apiResponse.data.results;
-      res.render('index', { films: films.slice(0, 25) });
+      var films = apiResponse.data;
+      res.render('films/index', { films: films.slice(0, 25) });
     })
   });
 
@@ -72,8 +72,9 @@ app.get('/people', function(req, res) {
     var peopleUrl = 'https://ghibliapi.herokuapp.com/people';
     // Use request to call the API
     axios.get(peopleUrl).then( function(apiResponse) {
-      var people = apiResponse.data.results;
-      res.render('index', { people: people.slice(0, 151) });
+      var people = apiResponse.data;
+      console.log(apiResponse.data)
+      res.render('people/index', { people: people.slice(0, 151) });
     })
   });
 
