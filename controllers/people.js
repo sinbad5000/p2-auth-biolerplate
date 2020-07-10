@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../models');
 const axios = require('axios');
 
+
 // GET /pokemon - return a page with favorited Pokemon
 router.get('/', function(req, res) {
   // TODO: Get all records from the DB and render to view

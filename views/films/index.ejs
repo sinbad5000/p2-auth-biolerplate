@@ -1,8 +1,12 @@
 <div class="container">
-    <h2>My Favorite Films</h2>
+    <h2>All the Studio Gihlbi films in one place!</h2>
     <ul>
         <% films.forEach(function(film) { %>
-            <li><a href="/films/<%= film.id %>"><%= film.title %></a></li>
+            <li class="list"><a href="/films/<%= film.id %>"><%= film.title %></a></li>
+            <form method="POST" action="/profile">
+                <input hidden type="text" name="name" value="<%= films.title %>">
+                <button class="btn btn-primary" type="submit">Add to Profile</button>
+              </form>
         <% }) %>
     </ul>
 </div> 

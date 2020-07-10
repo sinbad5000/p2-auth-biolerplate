@@ -1,8 +1,11 @@
 var express = require('express');
+var express = require('express');
 var router = express.Router();
 var db = require('../models');
 const axios = require('axios');
-const { receiveMessageOnPort } = require('worker_threads');
+
+
+// const { receiveMessageOnPort } = require('worker_threads');
 
 // GET /pokemon - return a page with favorited Pokemon
 router.get('/', function(req, res) {
