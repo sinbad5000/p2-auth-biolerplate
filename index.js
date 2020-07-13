@@ -63,7 +63,7 @@ app.get('/films', function(req, res) {
     // Use request to call the API
     axios.get(filmsUrl).then( function(apiResponse) {
       var films = apiResponse.data;
-      res.render('films/index', { films: films.slice(0, 25) });
+      res.render('films/index', { films: films.slice(0, 30) });
     })
   });
 
@@ -74,10 +74,31 @@ app.get('/people', function(req, res) {
     axios.get(peopleUrl).then( function(apiResponse) {
       var people = apiResponse.data;
       console.log(apiResponse.data)
-      res.render('people/index', { people: people.slice(0, 151) });
+      res.render('people/index', { people: people.slice(0, 60) });
     })
   });
 
+// GET / - main index of site
+app.get('/vehicles', function(req, res) {
+  var vehiclesUrl = 'https://ghibliapi.herokuapp.com/vehicles';
+  // Use request to call the API
+  axios.get(vehiclesUrl).then( function(apiResponse) {
+    var vehicles = apiResponse.data;
+    console.log(apiResponse.data)
+    res.render('vehicles/index', { vehicles: vehicles.slice(0,10) });
+  })
+});
+
+// GET / - main index of site
+app.get('/locations', function(req, res) {
+  var locationsUrl = 'https://ghibliapi.herokuapp.com/locations';
+  // Use request to call the API
+  axios.get(locationsUrl).then( function(apiResponse) {
+    var locations = apiResponse.data;
+    console.log(apiResponse.data)
+    res.render('locations/index', { locations: locations.slice(0, 30) });
+  })
+});
 
 
 
@@ -89,5 +110,8 @@ app.get('/people', function(req, res) {
 app.use("/auth", require("./controllers/auth"))
 app.use('/films', require('./controllers/films'));
 app.use('/people', require('./controllers/people'));
+app.use('/profile', require('./controllers/profile'));
+app.use('/vehicles', require('./controllers/vehicles'));
+app.use('/locations', require('./controllers/locations'));
 var server = app.listen(process.env.PORT || 3000)
 module.exports = server;

@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>My Favorite Vehicles</h2>
+    <ul>
+        <% vehicles.forEach(function(vehicles) { %>
+            <li><a href="/vehicles/<%= vehicles.id %>"><%= vehicles.name %></a></li>
+        <% }) %>
+    </ul>
+</div> 

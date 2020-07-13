@@ -4,39 +4,37 @@ var db = require('../models');
 const axios = require('axios');
 
 
-// const { receiveMessageOnPort } = require('worker_threads');
-
 // GET /pokemon - return a page with favorited Pokemon
 router.get('/', function(req, res) {
   // TODO: Get all records from the DB and render to view
-  db.films.findAll().then(function(poke) {
-    res.render("films/index", {poke:poke})
+  db.locations.findAll().then(function(poke) {
+    res.render("locations/index", {poke:poke})
   })
 });
 
 // POST /pokemon - receive the name of a pokemon and add it to the database
 router.post('/', function(req, res) {
   // TODO: Get form data and add a new record to DB
-  db.films.findOrCreate({
+  db.locations.findOrCreate({
     where: {
-      title: req.body.title
+      name: req.body.name
     }
-  }).then(([films, created]) => {
-    res.redirect('/films')
+  }).then(([people, created]) => {
+    res.redirect('/locations')
   })
 });
 
 
 router.get('/:id', function(req, res) {
-//  db.films.findOne({
-  //  where: {
-    //  id: req.params.id
-   // }
- // }).then(function(films) {
-    axios.get('https://ghibliapi.herokuapp.com/films/'+req.params.id)
+//  db.people.findOne({
+//    where: {
+//      id: req.params.id
+//    }
+ // }).then(function(people) {
+    axios.get('https://ghibliapi.herokuapp.com/locations/'+req.params.id)
     .then(function(response) {
-      res.render('films/show', {response})
-//    })
+      res.render('locations/show', {response})
+ //   })
   })
 })
 

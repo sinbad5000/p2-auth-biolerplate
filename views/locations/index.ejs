@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>All the Studio Gihlbi locations in one place!</h2>
+    <ul>
+        <% locations.forEach(function(locations) { %>
+            <li><a href="/locations/<%= locations.id %>"><%= locations.name %></a></li>
+        <% }) %>
+    </ul>
+</div> 
