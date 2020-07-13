@@ -2,6 +2,12 @@
     
     <h1>Hi <%= currentUser.name %>, welcome to the app!</h1>  
     <ul>
-        
+       <% films.forEach(function(film){ %>
+            <li> <%= film.title %> </li>
+            <form method="POST" action="/profile/<%=film.title%>/?_method=DELETE">
+
+                <button class="btn btn-primary" type="submit">remove</button>
+            </form>
+      <%  }) %>
     </ul>
 </div> 

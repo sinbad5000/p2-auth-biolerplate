@@ -11,11 +11,12 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store)
 const isLoggedIn = require("./middleware/isLoggedIn")
 const rowdy = require('rowdy-logger')
 const moment = require('moment')
+const methodOverride = require('method-override');
 const app = Express()
 
 rowdy.begin(app)
 
-
+app.use(methodOverride('_method'));
 app.use(Express.urlencoded({ extended: false}))
 app.use(Express.static(__dirname + "/public"))
 app.set("view engine", "ejs")
@@ -52,9 +53,9 @@ app.get("/", function(req, res) {
     res.render("index")
 })
 
-app.get("/profile", isLoggedIn, function(req, res) {
-    res.render("profile")
-})
+//app.get("/profile", isLoggedIn, function(req, res) {
+//    res.render("profile")
+// })
 
 
 // GET / - main index of site

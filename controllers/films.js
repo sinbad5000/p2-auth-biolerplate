@@ -22,7 +22,6 @@ router.post('/', function(req, res) {
       title: req.body.title
     }
   }).then(([films, created]) => {
-    console.log(films)
     res.redirect('/films')
   })
 });
