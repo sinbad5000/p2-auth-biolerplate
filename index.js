@@ -101,13 +101,6 @@ app.get('/locations', function(req, res) {
   })
 });
 
-
-
-
-
-
-
-
 app.use("/auth", require("./controllers/auth"))
 app.use('/films', require('./controllers/films'));
 app.use('/people', require('./controllers/people'));

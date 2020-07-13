@@ -8,19 +8,27 @@
 }
 
 a {
-    color: black;
+    color: red;
 }
 
 p {
     font-family: 'Vesper Libre', serif;
     font-size: 30px;
-    color: black;
+    color: red;
 }
 
+h2 {
+    color:red;
+    font-family: 'Vesper Libre', serif;
+}
+h3 {
+    color:red;
+    font-family: 'Vesper Libre', serif;
+}
 h1 {
     display: flex;
     justify-content: center;
-    color:black;
+    color:red;
     font-family: 'Vesper Libre', serif;
     font-size: 70px;
     
@@ -38,6 +46,30 @@ h1 {
     background-size: cover;
 }
 
+#films {
+    background-image: url(/img/princess.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#people {
+    background-image: url(/img/favorites.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#locations {
+    background-image: url(/img/castle.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#vehicles {
+    background-image: url(/img/river.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .auth {
     background-image: url(/img/fireflies.jpg);
     background-repeat: no-repeat;
@@ -45,5 +77,6 @@ h1 {
 }
 
 .list {
-    font-size: 30px;
+    color:red;
+    font-family: 'Vesper Libre', serif;
 }
