@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models');
+const isLoggedIn = require("../middleware/isLoggedIn")
 
 
 // GET /pokemon - return a page with favorited Pokemon
-router.get('/', function(req, res) {
+router.get('/',isLoggedIn, function(req, res) {
     // TODO: Get all records from the DB and render to view
    
     db.film.findAll().then(function(films) {
@@ -21,7 +22,7 @@ router.get('/', function(req, res) {
       }).then(res.redirect("/profile"))
     });
   // POST /pokemon - receive the name of a pokemon and add it to the database
-  router.post('/', function(req, res) {
+  router.post('/', isLoggedIn, function(req, res) {
     // TODO: Get form data and add a new record to DB
     db.film.findOrCreate({
       where: {
