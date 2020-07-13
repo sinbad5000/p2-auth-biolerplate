@@ -9,19 +9,20 @@ const axios = require('axios');
 // GET /pokemon - return a page with favorited Pokemon
 router.get('/', function(req, res) {
   // TODO: Get all records from the DB and render to view
-  db.films.findAll().then(function(poke) {
-    res.render("films/index", {poke:poke})
+  db.films.findAll().then(function(films) {
+    res.render("films/index", {films:films})
   })
 });
 
 // POST /pokemon - receive the name of a pokemon and add it to the database
 router.post('/', function(req, res) {
   // TODO: Get form data and add a new record to DB
-  db.films.findOrCreate({
+  db.film.findOrCreate({
     where: {
       title: req.body.title
     }
   }).then(([films, created]) => {
+    console.log(films)
     res.redirect('/films')
   })
 });
