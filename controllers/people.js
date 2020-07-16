@@ -5,12 +5,7 @@ const axios = require('axios');
 
 
 // GET /pokemon - return a page with favorited Pokemon
-router.get('/', function(req, res) {
-  // TODO: Get all records from the DB and render to view
-  db.people.findAll().then(function(poke) {
-    res.render("people/index", {poke:poke})
-  })
-});
+
 
 // POST /pokemon - receive the name of a pokemon and add it to the database
 router.post('/', function(req, res) {
@@ -24,6 +19,15 @@ router.post('/', function(req, res) {
   })
 });
 
+router.get('/', function(req, res) {
+  var peopleUrl = 'https://ghibliapi.herokuapp.com/people';
+  // Use request to call the API
+  axios.get(peopleUrl).then( function(apiResponse) {
+    var people = apiResponse.data;
+    console.log(apiResponse.data)
+    res.render('people/index', { people: people.slice(0, 60) });
+  })
+});
 
 router.get('/:id', function(req, res) {
 //  db.people.findOne({

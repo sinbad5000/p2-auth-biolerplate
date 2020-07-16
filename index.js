@@ -59,47 +59,46 @@ app.get("/", function(req, res) {
 
 
 // GET / - main index of site
-app.get('/films', function(req, res) {
-    var filmsUrl = 'https://ghibliapi.herokuapp.com/films';
+//app.get('/films', function(req, res) {
+//    var filmsUrl = 'https://ghibliapi.herokuapp.com/films';
     // Use request to call the API
-    axios.get(filmsUrl).then( function(apiResponse) {
-      var films = apiResponse.data;
-      res.render('films/index', { films: films.slice(0, 30) });
-    })
-  });
+//    axios.get(filmsUrl).then( function(apiResponse) {
+ //     var films = apiResponse.data;
+ //     res.render('films/index', { films: films.slice(0, 30) });
+ //   })
+//  });
 
 // GET / - main index of site
-app.get('/people', function(req, res) {
-    var peopleUrl = 'https://ghibliapi.herokuapp.com/people';
+// app.get('/people', function(req, res) {
+//       var peopleUrl = 'https://ghibliapi.herokuapp.com/people';
     // Use request to call the API
-    axios.get(peopleUrl).then( function(apiResponse) {
-      var people = apiResponse.data;
-      console.log(apiResponse.data)
-      res.render('people/index', { people: people.slice(0, 60) });
-    })
-  });
+//    axios.get(peopleUrl).then( function(apiResponse) {
+//      var people = apiResponse.data;
+//      console.log(apiResponse.data)
+//      res.render('people/index', { people: people.slice(0, 60) });
+//    })
+//  });
 
 // GET / - main index of site
-app.get('/vehicles', function(req, res) {
-  var vehiclesUrl = 'https://ghibliapi.herokuapp.com/vehicles';
+//app.get('/vehicles', function(req, res) {
+//  var vehiclesUrl = 'https://ghibliapi.herokuapp.com/vehicles';
   // Use request to call the API
-  axios.get(vehiclesUrl).then( function(apiResponse) {
-    var vehicles = apiResponse.data;
-    console.log(apiResponse.data)
-    res.render('vehicles/index', { vehicles: vehicles.slice(0,10) });
-  })
-});
+//  axios.get(vehiclesUrl).then( function(apiResponse) {
+//    var vehicles = apiResponse.data;
+//    console.log(apiResponse.data)
+//    res.render('vehicles/index', { vehicles: vehicles.slice(0,10) });
+//  })
+//});
 
 // GET / - main index of site
-app.get('/locations', function(req, res) {
-  var locationsUrl = 'https://ghibliapi.herokuapp.com/locations';
+//app.get('/locations', function(req, res) {
+//  var locationsUrl = 'https://ghibliapi.herokuapp.com/locations';
   // Use request to call the API
-  axios.get(locationsUrl).then( function(apiResponse) {
-    var locations = apiResponse.data;
-    console.log(apiResponse.data)
-    res.render('locations/index', { locations: locations.slice(0, 30) });
-  })
-});
+//  axios.get(locationsUrl).then( function(apiResponse) {
+ //   var locations = apiResponse.data;
+ //   res.render('locations/index', { locations: locations.slice(0, 30) });
+ // })
+//});
 
 app.use("/auth", require("./controllers/auth"))
 app.use('/films', require('./controllers/films'));

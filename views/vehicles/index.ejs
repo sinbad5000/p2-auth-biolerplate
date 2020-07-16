@@ -1,9 +1,13 @@
 <body id="vehicles">
     <div class="container">
-        <h2>My Favorite Vehicles</h2>
+        <h2>The three main vehicles</h2>
         <ul>
-            <% vehicles.forEach(function(vehicles) { %>
-                <li><a href="/vehicles/<%= vehicles.id %>"><%= vehicles.name %></a></li>
+            <% vehicles.forEach(function(vehicle) { %>
+                <li class="list"><a href="/vehicles/<%= vehicle.id %>"><%= vehicle.name %></a></li>
+                <form method="POST" action="/profile/vehicles">
+                    <input hidden type="text" name="name" value="<%= vehicle.name %>">
+                    <button class="btn btn-primary" type="submit">Add to Profile</button>
+                  </form>
             <% }) %>
         </ul>
     </div> 

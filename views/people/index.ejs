@@ -2,8 +2,12 @@
     <div class="container">
         <h2>My Favorite People</h2>
         <ul>
-            <% people.forEach(function(people) { %>
-                <li><a href="/people/<%= people.id %>"><%= people.name %></a></li>
+            <% people.forEach(function(person) { %>
+                <li class="list"><a href="/people/<%= person.id %>"><%= person.name %></a></li>
+                <form method="POST" action="/profile/people">
+                    <input hidden type="text" name="name" value="<%= person.name %>">
+                    <button class="btn btn-primary" type="submit">Add to Profile</button>
+                  </form>
             <% }) %>
         </ul>
     </div> 

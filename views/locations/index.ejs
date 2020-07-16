@@ -2,8 +2,12 @@
     <div class="container">
         <h2>All the Studio Gihlbi locations in one place!</h2>
         <ul>
-            <% locations.forEach(function(locations) { %>
-                <li><a href="/locations/<%= locations.id %>"><%= locations.name %></a></li>
+            <% locations.forEach(function(location) { %>
+                <li class="list"><a href="/locations/<%= location.id %>"><%= location.name %></a></li>
+                <form method="POST" action="/profile/locations">
+                    <input hidden type="text" name="name" value="<%= location.name %>">
+                    <button class="btn btn-primary" type="submit">Add to Profile</button>
+                  </form>
             <% }) %>
         </ul>
     </div> 
